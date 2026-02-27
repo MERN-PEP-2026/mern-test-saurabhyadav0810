@@ -1,9 +1,7 @@
-
-import express from "express";
 import http from "http";
-const PORT = 5000;
-const app = express();
+import app from "./app.js";
 
+const PORT = 3000;
 const server = http.createServer(app);
 app.get("/", (req, res) => {
   res.send("Hello World!");
