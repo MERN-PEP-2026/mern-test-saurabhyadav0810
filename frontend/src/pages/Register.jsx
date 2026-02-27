@@ -8,9 +8,17 @@ export default function Register() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await API.post("/auth/register", form);
-    alert("Registered successfully");
-    navigate("/");
+    try {
+      if (!form.name || !form.email || !form.password) {
+        alert("Please fill in all fields");
+        return;
+      }
+      await API.post("/auth/register", form);
+      alert("Registered successfully");
+      navigate("/");
+    } catch (error) {
+      alert(error.response?.data?.message || "Registration failed");
+    }
   };
 
   return (
